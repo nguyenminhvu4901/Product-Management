@@ -36,7 +36,6 @@ class ProductController{
 	}
 
 	public function update(){
-
 		$id_p = $_GET['id_p'];
 		require '../model/Product.php';
 		$result = (new Product())->selectId($id_p);
@@ -54,17 +53,17 @@ class ProductController{
 		$product_date = $_POST['product_date'];
 		$product_photo = $_FILES['product_photo'];
 		if($product_photo['size'] > 0){
-			$target_dir = "photos/";
+		$target_dir = "../controller/photos/";
 		//Lay ra duoi file anh
 		$file_extension = explode('.', $product_photo['name'])[1];
 		$target_file = $target_dir . time(). '.'.$file_extension;
 		move_uploaded_file($product_photo["tmp_name"], $target_file);
 	}else {
 		$target_file = $_POST['product_photo_old'];
+
 	}
 		$id_manufacturer = $_POST['id_manufacturer'];
 		//upload file
-		
 		require '../model/Product.php';
 		$result = (new Product())->update($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		if($result === true){

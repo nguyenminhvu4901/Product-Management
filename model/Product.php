@@ -49,9 +49,7 @@ class Product{
 // 			where id_sv = '{$object->get_id_sv()}'";
 // 			$rs = (new Connect())->select($sql);
 // 			return $rs;
-
-		$object = new ProductObject($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
-		$object->setIdP($id_p);
+		$object = new ProductObject($product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		$object->setProductName($product_name);
 		$object->setProductDescription($product_description);
 		$object->setProductPrice($product_price);
@@ -65,7 +63,7 @@ class Product{
 		product_date = '{$object->getProductDate()}',
 		product_photo= '{$object->getProductPhoto()}',
 		id_manufacturer = '{$object->getIdManufacturer()}'
-		where id_p = '{$object->getIdP()}'";
+		where id_p = '$id_p'";
 		$rs = (new Connect())->select($sql);
 		return $rs;
 	}
