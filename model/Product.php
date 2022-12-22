@@ -1,0 +1,74 @@
+<?php
+require_once '../config/connect.php';
+require_once '../model/ManufactureObject.php';
+
+class Product{
+	public function all(){
+		$sql = "select p.*, m.manufacturer_name from product p
+		join manufacturer m
+		on p.id_manufacturer = m.id_m";
+		$result = (new Connect())->select($sql);
+		$arr = [];
+		foreach ($result as $key) {
+			$object = new ProductObject($key);
+			$arr[] = $object;
+		}
+		return $arr;
+	}
+
+	public function insert($params){
+		$object = new ProductObject($params);
+		$sql = "insert into product ( product_name, product_description, product_price, product_date, product_photo, id_manufacturer)
+		values ('{$object->getProductName()}', '{$object->getProductDescription()}', '{$object->getProductPrice()}', '{$object->getProductDate()}', '{$object->getProductPhoto()}', '{$object->getIdManufacturer()}'  )";
+		$rs = (new Connect())->select($sql);
+		return $rs;
+
+	}
+
+	public function selectId($id_m){
+		$sql = "select * from product  where id_p = $id_p ";
+		$result = (new Connect())->select($sql);
+		$each = mysqli_fetch_array($result);
+
+		return new ProductObject($each);
+
+	}
+
+	public function update($params){
+		$object = new ProductObject($params);
+		$sql = "update product set
+		product_name = '{$object->getProductName()}',
+		product_description= '{$object->getProductDescription()}',
+		product_price = '{$object->getProductPrice()}',
+		product_date = '{$object->getProductDate()}',
+		product_photo= '{$object->getProductPhoto()}',
+		id_manufacturer = '{$object->getIdManufacturer()}'
+		where id_p = '{$object->getIdP()}' ";
+		$rs = (new Connect())->select($sql);
+		return $rs;
+	}
+
+	public function delete($id_p){
+		$sql = "delete from product where id_p = '$id_p'";
+		$rs = (new Connect())->select($sql);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+?>

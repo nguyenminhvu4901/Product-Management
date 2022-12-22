@@ -11,12 +11,13 @@
 
 	$success = $_GET['success'] ?? '';
 	?>
-	<span style="color: red;"><?php
-	echo $error;
-	?></span>
 	<span style="color: green;"><?php
 	echo $success;
 	?></span>
+	<span style="color: red;"><?php
+	echo $error;
+	?></span>
+	
 	
 	<a href="?controller=manufacture&action=create" title="">Add Manufacture</a>
 	  	<table border="1">
