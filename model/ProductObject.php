@@ -26,13 +26,6 @@
 		$this->manufacturer_name= $row['manufacturer_name'] ?? '';
 	}
 
-	
-
-
-
-
-    
-
     /**
      * @return mixed
      */

@@ -1,6 +1,6 @@
 <?php
 require_once '../config/connect.php';
-require_once '../model/ManufactureObject.php';
+require_once '../model/ProductObject.php';
 
 class Product{
 	public function all(){
@@ -16,8 +16,14 @@ class Product{
 		return $arr;
 	}
 
-	public function insert($params){
-		$object = new ProductObject($params);
+	public function insert($product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer){
+		$object = new ProductObject($product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
+		$object->setProductName($product_name);
+		$object->setProductDescription($product_description);
+		$object->setProductPrice($product_price);
+		$object->setProductDate($product_date);
+		$object->setProductPhoto($target_file);
+		$object->setIdManufacturer($id_manufacturer);
 		$sql = "insert into product ( product_name, product_description, product_price, product_date, product_photo, id_manufacturer)
 		values ('{$object->getProductName()}', '{$object->getProductDescription()}', '{$object->getProductPrice()}', '{$object->getProductDate()}', '{$object->getProductPhoto()}', '{$object->getIdManufacturer()}'  )";
 		$rs = (new Connect())->select($sql);
@@ -25,7 +31,7 @@ class Product{
 
 	}
 
-	public function selectId($id_m){
+	public function selectId($id_p){
 		$sql = "select * from product  where id_p = $id_p ";
 		$result = (new Connect())->select($sql);
 		$each = mysqli_fetch_array($result);
@@ -34,16 +40,32 @@ class Product{
 
 	}
 
-	public function update($params){
-		$object = new ProductObject($params);
-		$sql = "update product set
+	public function update($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer){
+
+// $object = new SinhVienObject($params);
+// 			$sql = "Update SinhVien set
+// 			ten = '{$object->get_ten()}',
+// 			id_lop = '{$object->get_id_lop()}'
+// 			where id_sv = '{$object->get_id_sv()}'";
+// 			$rs = (new Connect())->select($sql);
+// 			return $rs;
+
+		$object = new ProductObject($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
+		$object->setIdP($id_p);
+		$object->setProductName($product_name);
+		$object->setProductDescription($product_description);
+		$object->setProductPrice($product_price);
+		$object->setProductDate($product_date);
+		$object->setProductPhoto($target_file);
+		$object->setIdManufacturer($id_manufacturer);
+		$sql = "Update product set
 		product_name = '{$object->getProductName()}',
 		product_description= '{$object->getProductDescription()}',
 		product_price = '{$object->getProductPrice()}',
 		product_date = '{$object->getProductDate()}',
 		product_photo= '{$object->getProductPhoto()}',
 		id_manufacturer = '{$object->getIdManufacturer()}'
-		where id_p = '{$object->getIdP()}' ";
+		where id_p = '{$object->getIdP()}'";
 		$rs = (new Connect())->select($sql);
 		return $rs;
 	}

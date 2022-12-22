@@ -12,6 +12,7 @@ class ManufactureController{
 	}
 
 	public function store(){
+
 		require '../model/Manufacture.php';
 		$rs = (new Manufacture())->insert($_POST);
 		if($rs === true){
