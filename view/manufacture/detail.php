@@ -25,6 +25,6 @@
 	  			</tr>
 	  		</tbody>
 	  	</table>
-	  	
+	  	<a href="?controller=manufacture&action=index" title="">Manufacture</a>
 </body>
 </html>

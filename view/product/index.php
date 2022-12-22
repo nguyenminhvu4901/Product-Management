@@ -52,5 +52,6 @@
 	  		<?php } ?>
 	  		</tbody>
 	  	</table>
+	  	<a href="?controller=base" title="">Menu</a>
 </body>
 </html>

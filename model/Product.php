@@ -32,7 +32,9 @@ class Product{
 	}
 
 	public function selectId($id_p){
-		$sql = "select * from product  where id_p = $id_p ";
+		$sql = "select p.*, m.manufacturer_name from product p 
+		join manufacturer m
+		on p.id_manufacturer = m.id_m and id_p = '$id_p'";
 		$result = (new Connect())->select($sql);
 		$each = mysqli_fetch_array($result);
 
