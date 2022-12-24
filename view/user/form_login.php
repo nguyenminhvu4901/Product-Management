@@ -1,3 +1,25 @@
+<?php 
+if(isset($_COOKIE['remember'])){
+	$token = $_COOKIE['remember'];
+	$connect = mysqli_connect('localhost','root','','Product_Manager');
+	mysqli_set_charset($connect, 'utf8');
+	$sql = "select * from User where token = '$token' limit 1 ";
+	$result = mysqli_query($connect, $sql);
+	$num_row = mysqli_num_rows($result);
+	if($num_row == 1){
+		$each = mysqli_fetch_array($result);
+		$_SESSION['id'] = $each['id'];
+		$_SESSION['name'] = $each['name'];
+	}
+	
+}
+session_start();
+if(isset($_SESSION['id'])){
+	header('location: ../index.php');
+	exit;
+}
+
+?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -24,7 +46,7 @@
 	<title>Login</title>
 </head>
 <body>
-	<form action="" method="post" accept-charset="utf-8">
+	<form action="../../controller/LoginController.php" method="post" accept-charset="utf-8">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
 			<div class="container">
 				<a class="navbar-brand" href="../../index.php">Zũ</a>

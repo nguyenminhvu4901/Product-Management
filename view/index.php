@@ -1,3 +1,7 @@
 <?php
-	require ('router.php');
+session_start();
+if(empty($_SESSION['id'])){
+	header('location: ../index.php');
+}
+require ('router.php');
 ?>

@@ -9,6 +9,7 @@ class UserObject{
 	private $address;
 	private $avatar;
 	private $email;
+    private $token;
 
 	public function __construct($row){
 		$this->id = $row['id'] ?? '';
@@ -20,6 +21,7 @@ class UserObject{
 		$this->address = $row['address'] ?? '';
 		$this->avatar = $row['avatar'] ?? '';
 		$this->email = $row['email'] ?? '';
+        $this->token = $row['token'] ?? '';
 	}
 
 	
@@ -201,6 +203,26 @@ class UserObject{
     	$this->email = $email;
 
     	return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     *
+     * @return self
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
     }
 }
 ?>

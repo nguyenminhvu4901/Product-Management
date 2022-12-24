@@ -19,5 +19,28 @@ class User{
 		return $rs;
 
 	}
+
+	public function login($username, $password){
+		$object = new UserObject($username, $password);
+		$object->setUsername($username);
+		$object->setPassword($password);
+
+		$sql = "select * from User where username = '$username' and password = '$password' ";
+		$rs = (new Connect())->select($sql);
+		$num_row = mysqli_num_rows($rs);
+		return $num_row;
+	}
+
+
+
+	// public function update_token($id, $token){
+	// 	$object = new UserObject($id $token);
+	// 	$object->setId($id);
+	// 	$object->setToken($token);
+	// 	$sql = "update User
+	// 	set token = '$token' 
+	// 	where id = '$id' ";
+	// 	(new Connect())->execute($sql);
+	// }
 }
 ?>
