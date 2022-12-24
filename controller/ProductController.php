@@ -78,7 +78,6 @@ class ProductController{
 		require '../model/Product.php';
 		$result = (new Product())->selectId($id_p);
 		require '../view/product/detail.php';
-		
 	}
 
 	public function delete(){

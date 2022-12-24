@@ -11,7 +11,7 @@
 	<title>Document</title>
 </head>
 <body>
-	 <form action="?controller=product&action=process_update&id_p=<?php echo $result->getIdP() ?>" method="post" enctype="multipart/form-data">
+	 <form action="?controller=product&action=process_update&id=<?php echo $result->getIdP() ?>" method="post" enctype="multipart/form-data">
 	 	<input type="hidden" name="id_sv" value="<?php echo $result->getIdP() ?>">
 		<form action="?controller=product&action=store" method="post" enctype="multipart/form-data">
 		<div class="container">

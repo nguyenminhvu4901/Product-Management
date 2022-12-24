@@ -43,13 +43,6 @@ class Product{
 
 	public function update($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer){
 
-// $object = new SinhVienObject($params);
-// 			$sql = "Update SinhVien set
-// 			ten = '{$object->get_ten()}',
-// 			id_lop = '{$object->get_id_lop()}'
-// 			where id_sv = '{$object->get_id_sv()}'";
-// 			$rs = (new Connect())->select($sql);
-// 			return $rs;
 		$object = new ProductObject($product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		$object->setProductName($product_name);
 		$object->setProductDescription($product_description);

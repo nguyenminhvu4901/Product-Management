@@ -5,7 +5,7 @@ require '../controller/ManufactureController.php';
 require '../controller/ProductController.php';
 require '../controller/UserController.php';
 
-$login = 'login';
+$login = 'logged';
 if(isset($_GET['login'])){
 	$controller = $_GET['login'];
 }
@@ -19,6 +19,8 @@ $action = 'index';
 if(isset($_GET['action'])){
 	$action = $_GET['action'];
 }
+
+
 
 
 
@@ -81,34 +83,25 @@ switch($controller){
 		echo 'Nhap sai cu phap, vui long nhap lai';
 		break;
 	}
-	// break;
-	// case 'user':
-	// switch($action){
-	// 	case 'index':
-	// 	(new ProductController())->index();
-	// 	break;
-	// 	case 'create':
-	// 	(new ProductController())->create();
-	// 	break;
-	// 	case 'store':
-	// 	(new ProductController())->store();
-	// 	break;
-	// 	case 'update':
-	// 	(new ProductController())->update();
-	// 	break;
-	// 	case 'process_update':
-	// 	(new ProductController())->process_update();
-	// 	break;
-	// 	case 'detail':
-	// 	(new ProductController())->detail();
-	// 	break;
-	// 	case 'delete':
-	// 	(new ProductController())->delete();
-	// 	break;	
-	// 	default:
-	// 	echo 'Nhap sai cu phap, vui long nhap lai';
-	// 	break;
-	// }
+	break;
+	case 'user':
+	switch($action){
+		case 'index':
+		(new UserController())->index();
+		break;
+		case 'update':
+		(new UserController())->form_update();
+		break;
+		case 'process_update':
+		(new UserController())->process_update();
+		break;
+		case 'detail':
+		(new UserController())->detail();
+		break;	
+		default:
+		echo 'Nhap sai cu phap, vui long nhap lai';
+		break;
+	}
 	break;
 	default:
 	echo 'Nhập sai controller, vui lòng nhập lại!';

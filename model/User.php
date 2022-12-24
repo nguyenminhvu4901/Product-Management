@@ -31,6 +31,38 @@ class User{
 		return $num_row;
 	}
 
+	public function selectId($id){
+		$sql = "select * from User
+		where id = '$id' ";
+		$result = (new Connect())->select($sql);
+		$each = mysqli_fetch_array($result);
+
+		return new UserObject($each);
+
+	}
+
+	public function update($id, $name, $birth, $gender, $address, $target_file, $email){
+		$object = new UserObject($id, $name, $birth, $gender, $address, $target_file, $email);
+		$object->setId($id);
+		$object->setName($name);
+		$object->setBirth($birth);
+		$object->setGender($gender);
+		$object->setAddress($address);
+		$object->setAvatar($target_file);
+		$object->setEmail($email);
+
+		$sql = "Update User set
+		name = '{$object->getName()}',
+		birth = '{$object->getBirth()}',
+		gender = '{$object->getGender()}',
+		address = '{$object->getAddress()}',
+		avatar = '{$object->getAvatar()}',
+		email = '{$object->getEmail()}'
+		where id = '{$object->getId()}'";
+		$rs = (new Connect())->select($sql);
+		return $rs;
+	}
+
 
 
 	// public function update_token($id, $token){
