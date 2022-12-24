@@ -24,10 +24,10 @@
 	<title>Login</title>
 </head>
 <body>
-	<form action="index_submit" method="get" accept-charset="utf-8">
+	<form action="" method="post" accept-charset="utf-8">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
 			<div class="container">
-				<a class="navbar-brand" href="#">Zũ</a>
+				<a class="navbar-brand" href="../../index.php">Zũ</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -35,10 +35,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="#">Login</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Register</a>
+							<a class="nav-link" href="form_register.php">Register</a>
 						</li>
 					</ul>
 
@@ -55,9 +52,9 @@
 							<div class="card-body">
 								<form action="" method="">
 									<div class="form-group row">
-										<label for="email_address" class="col-md-4 col-form-label text-md-right">Username</label>
+										<label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
 										<div class="col-md-6">
-											<input type="text" id="email_address" class="form-control" name="email-address" >
+											<input type="text" id="username" class="form-control" name="username" >
 										</div>
 									</div>
 
@@ -82,9 +79,8 @@
 										<button type="submit" class="btn btn-primary">
 											<a href="#" style = "color:white; text-decoration: none;">Login</a>
 										</button>
-										<button type="submit" class="btn btn-info">
-											<a  href="form_register.php" style = "color:white; text-decoration: none;">Register</a>
-										</button>
+
+										
 									</div>
 								</div>
 							</form>
@@ -93,6 +89,7 @@
 				</div>
 			</div>
 		</div>
+		<a  href="form_register.php" style = "color:white; text-decoration: none;">Register</a>
 
 	</main>
 

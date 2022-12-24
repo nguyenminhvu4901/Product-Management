@@ -28,7 +28,6 @@ class Product{
 		values ('{$object->getProductName()}', '{$object->getProductDescription()}', '{$object->getProductPrice()}', '{$object->getProductDate()}', '{$object->getProductPhoto()}', '{$object->getIdManufacturer()}'  )";
 		$rs = (new Connect())->select($sql);
 		return $rs;
-
 	}
 
 	public function selectId($id_p){

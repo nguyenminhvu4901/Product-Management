@@ -12,7 +12,7 @@
 <body>
 
 
-	<form action="Xuly_Them.php" method="post" enctype="multipart/form-data">
+	<form action="../../controller/RegisterController.php" method="post" enctype="multipart/form-data">
 		<div class="container">
 			<div class="row">  	 	
 				<div class="col-md-6">
@@ -55,8 +55,8 @@
 
 				<div class="col-md-6">
 					<div class="mb-3">
-						<label for="date" class="form-label">Birth</label>
-						<input type="date" class="form-control" id="date" name="date">
+						<label for="birth" class="form-label">Birth</label>
+						<input type="date" class="form-control" id="birth" name="birth">
 					</div>
 					<div class="mb-3">
 						<label for="address" class="form-label">Address</label>

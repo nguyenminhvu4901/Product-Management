@@ -26,7 +26,7 @@ class Manufacture{
 	}
 
 	public function selectId($id_m){
-		$sql = "select * from manufacturer where id_m = $id_m ";
+		$sql = "select * from manufacturer where id_m = '$id_m' ";
 		$result = (new Connect())->select($sql);
 		$each = mysqli_fetch_array($result);
 

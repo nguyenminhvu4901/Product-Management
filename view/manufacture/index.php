@@ -6,18 +6,6 @@
 	<title>Document</title>
 </head>
 <body>
-	<?php 
-	$error = $_GET['error'] ?? '';
-
-	$success = $_GET['success'] ?? '';
-	?>
-	<span style="color: green;"><?php
-	echo $success;
-	?></span>
-	<span style="color: red;"><?php
-	echo $error;
-	?></span>
-	
 	
 	<a href="?controller=manufacture&action=create" title="">Add Manufacture</a>
 	  	<table border="1">
@@ -33,7 +21,7 @@
 	  			</tr>
 	  		</thead>
 	  		<tbody>
-	  			<? foreach($arr as $each) { ?>
+	  			<?php foreach($arr as $each) { ?>
 	  			<tr>
 	  				<td><?php echo $each->get_id_m() ?></td>
 	  				<td><?php echo $each->get_manufacturer_name() ?></td>
