@@ -32,6 +32,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<a href="?controller=product&action=index" title="">Product</a>
+	<a href="?controller=avatar&action=index" title="">Product</a>
 </body>
 </html>

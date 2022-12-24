@@ -31,7 +31,7 @@ class UserController{
 		require '../model/User.php';
 		$result = (new User())->update($id, $name, $birth, $gender, $address, $target_file, $email);
 		if($result === true){
-			header('Location: index.php?controller');
+			header('Location: index.php?controller=base');
 		}else{
 			header("Location: index.php?controller=user&action=update");
 		}
