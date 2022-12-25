@@ -83,6 +83,7 @@ class User{
 	}
 
 	public function process_change($id, $password){
+		//ma hoa pass moi
 		$password = sha1($password);
 		$sql = "Update User set
 		password = '$password'

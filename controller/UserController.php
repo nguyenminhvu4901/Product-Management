@@ -20,7 +20,6 @@ class UserController{
 		mysqli_set_charset($connect, 'utf8');
 
 		$sql = "select * from User where username = '$username' and password = '$password' ";
-
 		$rs= mysqli_query($connect, $sql);
 		// require '../model/User.php';
 		// $rs = (new User())->login($username, $password);
@@ -128,6 +127,7 @@ class UserController{
 		require '../config/session.php';
 		$id = $_POST['id'];
 		$old_pass= $_POST['old_pass'];
+		//ma hoa pass cu
 		$old_pass = sha1($old_pass);
 		$new_pass = $_POST['new_pass'];
 		$re_new_pass = $_POST['re_new_pass'];
