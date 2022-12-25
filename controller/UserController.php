@@ -10,6 +10,7 @@ class UserController{
 	public function login(){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		$password = sha1($password);
 		if(isset($_POST['remember'])){
 			$remember = true;
 		}else{
@@ -55,7 +56,7 @@ class UserController{
 		$avatar = $_FILES['avatar'];
 		$email = $_POST['email'];
 		//upload file
-		$target_dir = "avatars/";
+		$target_dir = "../controller/avatars/";
 		//Lay ra duoi file anh
 		$file_extension = explode('.', $avatar['name'])[1];
 		$target_file = $target_dir . time(). '.'.$file_extension;
@@ -106,12 +107,47 @@ class UserController{
 			header("Location: index.php?controller=user&action=update");
 		}
 	}
+
 	public function detail(){
 		require '../config/session.php';
 		$id = $_GET['id'];
 		require '../model/User.php';
 		$result = (new User())->selectId($id);
 		require '../view/user/detail.php';
+	}
+
+	public function change(){
+		require '../config/session.php';
+		$id = $_GET['id'];
+		require '../model/User.php';
+		$result = (new User())->selectId($id);
+		require 'user/form_change_password.php';
+	}
+
+	public function process_change(){
+		require '../config/session.php';
+		$id = $_POST['id'];
+		$old_pass= $_POST['old_pass'];
+		$old_pass = sha1($old_pass);
+		$new_pass = $_POST['new_pass'];
+		$re_new_pass = $_POST['re_new_pass'];
+		require '../model/User.php';
+		$rs = (new User())->selectPass($id, $old_pass);
+		if($rs == true){
+			if($new_pass === $re_new_pass){
+				$result = (new User())->process_change($id, $new_pass);
+				if($result == true){
+					header("Location: index.php?controller=base ");
+				}else{
+					header("Location: index.php?controller=user&action=change");
+				}
+			}else{
+				header("Location: index.php?controller=user&action=change");
+			}
+		}else{
+			header("Location: index.php?controller=user&action=change");
+		}
+		
 	}
 
 	public function logout(){

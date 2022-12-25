@@ -29,6 +29,7 @@ if(empty($_SESSION['id'])){
 			?>
 			<h3><a href="?controller=user&action=update&id=<?php echo $id ?>" title="">Thay đổi thông tin</a></h3>
 			<h3><a href="?controller=user&action=detail&id=<?php echo $id ?>" title="">Chi tiết</a></h3>
+			<h3><a href="?controller=user&action=change&id=<?php echo $id ?>" title="">Đổi mật khẩu</a></h3>
 
 		</li>
 		<li>

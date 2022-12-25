@@ -3,9 +3,10 @@ require 'UserObject.php';
 require '../config/connect.php';
 class User{
 	public function insert($username, $password, $name, $birth, $gender, $address, $target_file, $email){
+		$pass = $password;
 		$object = new UserObject($username, $password, $name, $birth, $gender, $address, $target_file, $email);
 		$object->setUsername($username);
-		$object->setPassword($password);
+		$object->setPassword(sha1($password));
 		$object->setName($name);
 		$object->setBirth($birth);
 		$object->setGender($gender);
@@ -20,22 +21,25 @@ class User{
 		if($rs == 1){
 			echo "thành công";
 			require_once('../mail/sendmail.php');
-			sendMail($email,$username,$password);
+			sendMail($email,$username,$pass);
+			header ('Location: ../index.php');
+			exit;
 		}
 		return $rs;
 
 	}
 
-	public function login($username, $password){
-		$object = new UserObject($username, $password);
-		$object->setUsername($username);
-		$object->setPassword($password);
+	// public function login($username, $password){
+	// 	$object = new UserObject($username, $password);
+	// 	$object->setUsername($username);
+	// 	$object->setPassword(sha1($password));
+	// 	die($password);
 
-		$sql = "select * from User where username = '$username' and password = '$password' ";
-		$rs = (new Connect())->select($sql);
-		$num_row = mysqli_num_rows($rs);
-		return $num_row;
-	}
+	// 	$sql = "select * from User where username = '$username' and password = '$password' ";
+	// 	$rs = (new Connect())->select($sql);
+	// 	$num_row = mysqli_num_rows($rs);
+	// 	return $num_row;
+	// }
 
 	public function selectId($id){
 		$sql = "select * from User
@@ -45,6 +49,15 @@ class User{
 
 		return new UserObject($each);
 
+	}
+
+	public function selectPass($id, $password){
+		$password = sha1($password);
+		$sql = "select password from User
+		where id = '$id' and password = '$password'";
+		$result = (new Connect())->select($sql);
+		$each = mysqli_fetch_array($result);
+		return new UserObject($each);
 	}
 
 	public function update($id, $name, $birth, $gender, $address, $target_file, $email){
@@ -68,6 +81,16 @@ class User{
 		$rs = (new Connect())->select($sql);
 		return $rs;
 	}
+
+	public function process_change($id, $password){
+		$password = sha1($password);
+		$sql = "Update User set
+		password = '$password'
+		where id = '$id' ";
+		$rs = (new Connect())->select($sql);
+		return $rs;
+	}
+
 
 
 
