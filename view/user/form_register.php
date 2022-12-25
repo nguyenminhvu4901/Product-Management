@@ -12,7 +12,7 @@
 <body>
 
 
-	<form action="../../controller/RegisterController.php" method="post" enctype="multipart/form-data">
+	<form action="../index.php?controller=user&action=store" method="post" enctype="multipart/form-data">
 		<div class="container">
 			<div class="row">  	 	
 				<div class="col-md-6">

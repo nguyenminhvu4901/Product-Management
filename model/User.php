@@ -16,6 +16,12 @@ class User{
 		$sql = "insert into User ( username, password, name, birth, gender, address, avatar, email)
 		values ('{$object->getUsername()}', '{$object->getPassword()}', '{$object->getName()}', '{$object->getBirth()}', '{$object->getGender()}', '{$object->getAddress()}', '{$object->getAvatar()}', '{$object->getEmail()}') ";
 		$rs = (new Connect())->select($sql);
+		print_r($rs);
+		if($rs == 1){
+			echo "thành công";
+			require_once('../mail/sendmail.php');
+			sendMail($email,$username,$password);
+		}
 		return $rs;
 
 	}

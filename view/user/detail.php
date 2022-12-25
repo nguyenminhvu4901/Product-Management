@@ -24,7 +24,7 @@
 				<td><?php echo $result->getId() ?></td>
 	  				<td><?php echo $result->getUsername() ?></td>
 	  				<td><?php echo $result->getName() ?></td>
-	  				<td><?php echo $result->getBirth() ?>đ</td>
+	  				<td><?php echo $result->getBirth() ?></td>
 	  				<td><?php echo $result->getGender() ?></td>
 	  				<td><?php echo $result->getAddress() ?></td>
 	  				<td><img src="<?php echo $result->getAvatar() ?>" alt="avatar" style="width: 100px;" /></td>
@@ -32,6 +32,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<a href="?controller=avatar&action=index" title="">Product</a>
+	<a href="?controller=base" title="">Menu</a>
 </body>
 </html>

@@ -25,7 +25,7 @@ try {
  
     //Recipients
     $mail->setFrom('xuanly0060277@gmail.com', 'Mailer');
-    $mail->addAddress($to, 'zô');     // Add a recipient
+    $mail->addAddress($to, 'Xin chao');     // Add a recipient
      // Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
     // $mail->addCC('cc@example.com');
@@ -38,7 +38,7 @@ try {
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Test Mail';
-    $mail->Body = "Tai khoan cua ban la ".$username." va mat khau la ".$password;
+    $mail->Body = "Tai khoan cua ban la: ".$username." va mat khau la: ".$password;
     $mail->AltBody = 'Ko có gì ';
  
     $mail->send();

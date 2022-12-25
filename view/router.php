@@ -89,6 +89,12 @@ switch($controller){
 		case 'index':
 		(new UserController())->index();
 		break;
+		case 'login':
+		(new UserController())->login();
+		break;
+		case 'store':
+		(new UserController())->store();
+		break;
 		case 'update':
 		(new UserController())->form_update();
 		break;
@@ -98,6 +104,9 @@ switch($controller){
 		case 'detail':
 		(new UserController())->detail();
 		break;	
+		case 'logout':
+		(new UserController())->logout();
+		break;
 		default:
 		echo 'Nhap sai cu phap, vui long nhap lai';
 		break;

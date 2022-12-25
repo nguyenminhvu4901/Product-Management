@@ -1,18 +1,21 @@
 <?php
 class ProductController{
 	public function index(){
+		require '../config/session.php';
 		require '../model/Product.php';
 		$arr = (new Product())->all();
 		require '../view/product/index.php';
 	}
 
 	public function create(){
+		require '../config/session.php';
 		require '../model/Manufacture.php';
 		$names = (new Manufacture())->all();
 		require "../view/product/create.php";
 	}
 
 	public function store(){
+		require '../config/session.php';
 		$product_name = $_POST['product_name'];
 		$product_description = $_POST['product_description'];
 		$product_price = $_POST['product_price'];
@@ -36,6 +39,7 @@ class ProductController{
 	}
 
 	public function update(){
+		require '../config/session.php';
 		$id_p = $_GET['id_p'];
 		require '../model/Product.php';
 		$result = (new Product())->selectId($id_p);
@@ -46,6 +50,7 @@ class ProductController{
 	}
 
 	public function process_update(){
+		require '../config/session.php';
 		$id_p = $_GET['id_p'];
 		$product_name = $_POST['product_name'];
 		$product_description = $_POST['product_description'];
@@ -74,6 +79,7 @@ class ProductController{
 	}
 
 	public function detail(){
+		require '../config/session.php';
 		$id_p = $_GET['id_p'];
 		require '../model/Product.php';
 		$result = (new Product())->selectId($id_p);
@@ -81,6 +87,7 @@ class ProductController{
 	}
 
 	public function delete(){
+		require '../config/session.php';
 		$id_p = $_GET['id_p'];
 		require '../model/Product.php';
 		$result = (new Product())->delete($id_p);

@@ -46,7 +46,7 @@ if(isset($_SESSION['id'])){
 	<title>Login</title>
 </head>
 <body>
-	<form action="../../controller/LoginController.php" method="post" accept-charset="utf-8">
+	<form action="../index.php?controller=user&action=login" method="post" accept-charset="utf-8">
 		<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
 			<div class="container">
 				<a class="navbar-brand" href="../../index.php">Zũ</a>
