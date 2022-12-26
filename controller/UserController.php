@@ -46,6 +46,10 @@ class UserController{
 	}
 
 	public function store(){
+		if(empty($_POST['username'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$name= $_POST['name'];
@@ -70,14 +74,22 @@ class UserController{
 	}
 
 	public function form_update(){
-		require '../config/session.php';
 		$id = $_GET['id'];
+		if(empty($_GET['id'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
+		require '../config/session.php';
 		require '../model/User.php';
 		$result = (new User())->selectId($id);
 		require'../view/user/form_update_user.php';
 	}
 
 	public function process_update(){
+		if(empty($_POST['id'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
 		require '../config/session.php';
 		$id = $_GET['id'];
 		$name = $_POST['name'];
@@ -108,6 +120,10 @@ class UserController{
 	}
 
 	public function detail(){
+		if(empty($_GET['id'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
 		require '../config/session.php';
 		$id = $_GET['id'];
 		require '../model/User.php';
@@ -116,6 +132,10 @@ class UserController{
 	}
 
 	public function change(){
+		if(empty($_GET['id'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
 		require '../config/session.php';
 		$id = $_GET['id'];
 		require '../model/User.php';
@@ -124,6 +144,10 @@ class UserController{
 	}
 
 	public function process_change(){
+		if(empty($_POST['id'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
 		require '../config/session.php';
 		$id = $_POST['id'];
 		$old_pass= $_POST['old_pass'];

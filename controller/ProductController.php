@@ -15,6 +15,10 @@ class ProductController{
 	}
 
 	public function store(){
+		if(empty($_POST['product_name'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
 		$product_name = $_POST['product_name'];
 		$product_description = $_POST['product_description'];
@@ -35,10 +39,14 @@ class ProductController{
 		}else{
 			header("Location: index.php?controller=product&action=create&error=Vui long nhap lai");
 		}
-		
+
 	}
 
 	public function update(){
+		if(empty($_GET['id_p'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
 		$id_p = $_GET['id_p'];
 		require '../model/Product.php';
@@ -46,27 +54,31 @@ class ProductController{
 		require '../model/Manufacture.php';
 		$names = (new Manufacture())->all();
 		require '../view/product/update.php';
-		
+
 	}
 
 	public function process_update(){
+		if(empty($_POST['id_p'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
-		$id_p = $_GET['id_p'];
+		$id_p = $_POST['id_p'];
 		$product_name = $_POST['product_name'];
 		$product_description = $_POST['product_description'];
 		$product_price = $_POST['product_price'];
 		$product_date = $_POST['product_date'];
 		$product_photo = $_FILES['product_photo'];
 		if($product_photo['size'] > 0){
-		$target_dir = "../controller/photos/";
+			$target_dir = "../controller/photos/";
 		//Lay ra duoi file anh
-		$file_extension = explode('.', $product_photo['name'])[1];
-		$target_file = $target_dir . time(). '.'.$file_extension;
-		move_uploaded_file($product_photo["tmp_name"], $target_file);
-	}else {
-		$target_file = $_POST['product_photo_old'];
+			$file_extension = explode('.', $product_photo['name'])[1];
+			$target_file = $target_dir . time(). '.'.$file_extension;
+			move_uploaded_file($product_photo["tmp_name"], $target_file);
+		}else {
+			$target_file = $_POST['product_photo_old'];
 
-	}
+		}
 		$id_manufacturer = $_POST['id_manufacturer'];
 		//upload file
 		require '../model/Product.php';
@@ -79,6 +91,10 @@ class ProductController{
 	}
 
 	public function detail(){
+		if(empty($_GET['id_p'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
 		$id_p = $_GET['id_p'];
 		require '../model/Product.php';
@@ -87,6 +103,10 @@ class ProductController{
 	}
 
 	public function delete(){
+		if(empty($_GET['id_p'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
 		$id_p = $_GET['id_p'];
 		require '../model/Product.php';
@@ -96,7 +116,7 @@ class ProductController{
 		}else{
 			header('Location: index.php?controller=product&action=index&success=Xoa thanh cong');
 		}
-}
+	}
 }
 
 ?>

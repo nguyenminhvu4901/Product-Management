@@ -12,13 +12,13 @@
 </head>
 <body>
 	 <form action="?controller=product&action=process_update&id=<?php echo $result->getIdP() ?>" method="post" enctype="multipart/form-data">
-	 	<input type="hidden" name="id_sv" value="<?php echo $result->getIdP() ?>">
+	 	<input type="hidden" name="id_p" value="<?php echo $result->getIdP() ?>">
 		<form action="?controller=product&action=store" method="post" enctype="multipart/form-data">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="mb-3">
-						<input type="hidden" id="id_p name="id_p" value="<?php echo $result->getIdP ?>">
+						<input type="hidden" id="id_p" name="id_p" value="<?php echo $result->getIdP() ?>">
 						<label for="product_name" class="form-label">Product name</label>
 						<input type="text" class="form-control" id="product_name" name="product_name" value="<?php echo $result->getProductName() ?>">
 					</div>

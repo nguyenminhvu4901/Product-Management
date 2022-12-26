@@ -103,7 +103,7 @@ switch($controller){
 		break;
 		case 'detail':
 		(new UserController())->detail();
-		break;
+		break;	
 		case 'change':
 		(new UserController())->change();
 		break;	

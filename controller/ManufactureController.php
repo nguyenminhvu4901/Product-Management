@@ -5,7 +5,7 @@ class ManufactureController{
 		require '../config/session.php';
 		require '../model/Manufacture.php';
 		$arr = (new Manufacture())->all();
-		require '../view/manufacture/index.php';
+		require "../view/manufacture/index.php";
 	}
 
 	public function create(){
@@ -14,6 +14,10 @@ class ManufactureController{
 	}
 
 	public function store(){
+		if(empty($_POST['manufacturer_name']) || empty($_POST['manufacturer_address']) || empty($_POST['manufacturer_phone'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
 		require '../model/Manufacture.php';
 		$rs = (new Manufacture())->insert($_POST);
@@ -26,6 +30,10 @@ class ManufactureController{
 	}
 
 	public function update(){
+		if(empty($_GET['id_m'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
 		$id_m = $_GET['id_m'];
 		require '../model/Manufacture.php';
@@ -35,6 +43,11 @@ class ManufactureController{
 	}
 
 	public function process_update(){
+		$id_m = $_GET['id_m'];
+		if(empty($_POST['id_m']) || empty($_POST['manufacturer_name']) || empty($_POST['manufacturer_address']) || empty($_POST['manufacturer_phone'])) {
+			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			exit;
+		}
 		require '../config/session.php';
 		require '../model/Manufacture.php';
 		$result = (new Manufacture())->update($_POST);
@@ -46,6 +59,11 @@ class ManufactureController{
 	}
 
 	public function detail(){
+		$id_m = $_GET['id_m'];
+		if(empty($_GET['id_m'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
 		require '../config/session.php';
 		$id_m = $_GET['id_m'];
 		require '../model/Manufacture.php';
@@ -55,6 +73,11 @@ class ManufactureController{
 	}
 
 	public function delete(){
+		$id_m = $_GET['id_m'];
+		if(empty($_GET['id_m'])){
+			header('Location: index.php?loi=Bạn cần nhập id để xóa');
+			exit;
+		}
 		require '../config/session.php';
 		$id_m = $_GET['id_m'];
 		require '../model/Manufacture.php';

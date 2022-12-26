@@ -42,7 +42,6 @@ class Product{
 	}
 
 	public function update($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer){
-
 		$object = new ProductObject($product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		$object->setProductName($product_name);
 		$object->setProductDescription($product_description);
@@ -66,20 +65,6 @@ class Product{
 		$sql = "delete from product where id_p = '$id_p'";
 		$rs = (new Connect())->select($sql);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

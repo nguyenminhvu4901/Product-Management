@@ -49,6 +49,10 @@ class Manufacture{
 		$sql = "delete from manufacturer where id_m = '$id_m'";
 		$rs = (new Connect())->select($sql);
 	}
+
 }
+
+
+
 
 ?>

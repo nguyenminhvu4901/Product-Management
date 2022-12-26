@@ -14,21 +14,21 @@
 	<form action="?controller=user&action=process_change" method="post" enctype="multipart/form-data">
 		<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id ?>">
 		<div class="container">
-					<div class="mb-3">
-						<label for="old_pass" class="form-label">Enter old pasword</label>
-						<input type="password" class="form-control" id="old_pass" name="old_pass">
-					</div>
-					<div class="mb-3">
-						<label for="new_pass" class="form-label">Enter New Password</label>
-						<input type="password" class="form-control" id="new_pass" name="new_pass">
-					</div>
-					<div class="mb-3">
-						<label for="re_new_pass" class="form-label">Re-Enter new password</label>
-						<input type=pasword class="form-control" id="re_new_pass" name="re_new_pass">
-					</div>
+			<div class="mb-3">
+				<label for="old_pass" class="form-label">Enter old pasword</label>
+				<input type="password" class="form-control" id="old_pass" name="old_pass">
+			</div>
+			<div class="mb-3">
+				<label for="new_pass" class="form-label">Enter New Password</label>
+				<input type="password" class="form-control" id="new_pass" name="new_pass">
+			</div>
+			<div class="mb-3">
+				<label for="re_new_pass" class="form-label">Re-Enter new password</label>
+				<input type="password" class="form-control" id="re_new_pass" name="re_new_pass">
+			</div>
 			<button type="submit" class="btn btn-primary">Change</button>
 		</div>
 
-</form>
+	</form>
 </body>
 </html>
