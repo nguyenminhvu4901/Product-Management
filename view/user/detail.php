@@ -11,6 +11,15 @@
 	<title>Document</title>
 </head>
 <body>
+	<span style="color:red;">
+			<?php if(isset($_SESSION['success'])){
+				echo $_SESSION['success'];
+				unset($_SESSION['success']);
+			}else if(isset($_SESSION['error'])){
+				echo $_SESSION['error'];
+				unset($_SESSION['error']);			
+			}?>
+		</span>
 	<table class="table table-danger" border="1">
 		<thead>
 			<tr>

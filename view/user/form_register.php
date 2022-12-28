@@ -15,14 +15,15 @@
 		<div class="container">
 			<div class="row">  	 	
 				<div class="col-md-6">
-					<?php
-					if(isset($_GET['loi'])){
-						
-						?>
-						<span style = "color:red;"><?php echo $_GET['loi']?></span>
-						<?php 
-					}
-					?>
+					<span style="color:red;">
+						<?php if(isset($_SESSION['success_register'])){
+							echo $_SESSION['success_register'];
+							unset($_SESSION['success_register']);
+						}else if(isset($_SESSION['error_register'])){
+							echo $_SESSION['error_register'];
+							unset($_SESSION['error_register']);			
+						}?>
+					</span>
 					<div class="mb-3">
 						<label for="username" class="form-label">Username</label>
 						<input type="text" class="form-control" id="username" name="username">

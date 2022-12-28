@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <?php
 session_start();
 ?>
@@ -14,8 +9,16 @@ session_start();
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
 <body id="LoginForm">
+	<span style="color:red;">
+		<?php if(isset($_SESSION['success_login'])){
+			echo $_SESSION['success_login'];
+			unset($_SESSION['success_login']);
+		}else if(isset($_SESSION['error_login'])){
+			echo $_SESSION['error_login'];
+			unset($_SESSION['error_login']);			
+		}?>
+	</span>
 	<div class="container">
-		<h1 class="form-heading">PHP Mysql Login using Cookie and Session</h1>
 		<div class="login-form">
 			<div class="main-div">
 				<div class="panel">

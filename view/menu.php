@@ -23,10 +23,28 @@ if(empty($_SESSION['id'])){
 </style>
 <body>
 	<h1 style="text-align: center;">MENU</h1>
-	<span style="color:red;"><?php if(isset($_SESSION['success'])){
-		echo $_SESSION['success'];
-		unset($_SESSION['success']);
-	}?></span>
+	<span style="color:red;">
+		<?php if(isset($_SESSION['success'])){
+			echo $_SESSION['success'];
+			unset($_SESSION['success']);
+		}else if(isset($_SESSION['error'])){
+			echo $_SESSION['error'];
+			unset($_SESSION['error']);			
+		}else if(isset($_SESSION['success_login'])){
+			echo $_SESSION['success_login'];
+			unset($_SESSION['success_login']);
+		}else if(isset($_SESSION['error_login'])){
+			echo $_SESSION['error_login'];
+			unset($_SESSION['error_login']);			
+		}else if(isset($_SESSION['success_register'])){
+			echo $_SESSION['success_register'];
+			unset($_SESSION['success_register']);
+		}else if(isset($_SESSION['error_register'])){
+			echo $_SESSION['error_register'];
+			unset($_SESSION['error_register']);			
+		}
+		?>
+	</span>
 	<br>
 	<ul>
 		<li>

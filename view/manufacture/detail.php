@@ -9,7 +9,15 @@
 	<title>Document</title>
 </head>
 <body>
-	
+	<span style="color:red;">
+		<?php if(isset($_SESSION['manufacture_success'])){
+			echo $_SESSION['manufacture_success'];
+			unset($_SESSION['manufacture_success']);
+		}else if(isset($_SESSION['manufacture_error'])){
+			echo $_SESSION['manufacture_error'];
+			unset($_SESSION['manufacture_error']);			
+		}?>
+	</span>
 	<table border="1" class="table table-danger">
 		<thead>
 			<tr>

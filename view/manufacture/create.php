@@ -12,6 +12,15 @@
 	<h1 style="text-align:center; color:red;">ADD MANUFACTURER</h1>
 
 	<form action="?controller=manufacture&action=store" method="post" enctype="multipart/form-data">
+		<span style="color:red;">
+			<?php if(isset($_SESSION['manufacture_success'])){
+				echo $_SESSION['manufacture_success'];
+				unset($_SESSION['manufacture_success']);
+			}else if(isset($_SESSION['manufacture_error'])){
+				echo $_SESSION['manufacture_error'];
+				unset($_SESSION['manufacture_error']);			
+			}?>
+		</span>
 		<div class="container">
 			<?php
 			if(isset($_GET['loi'])){

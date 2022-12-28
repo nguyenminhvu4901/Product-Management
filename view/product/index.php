@@ -23,6 +23,15 @@ echo $error;
 
 
 <a href="?controller=product&action=create" title="">Add Product</a>
+<span style="color:red;">
+	<?php if(isset($_SESSION['product_success'])){
+		echo $_SESSION['product_success'];
+		unset($_SESSION['product_success']);
+	}else if(isset($_SESSION['product_error'])){
+		echo $_SESSION['product_error'];
+		unset($_SESSION['product_error']);			
+	}?>
+</span>
 <table border="1" class="table table-danger">
 	<thead>
 		<tr>

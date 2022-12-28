@@ -13,6 +13,15 @@
 
 
 	<form action="?controller=user&action=process_update&id=<?php echo $result->getId() ?>" method="post" enctype="multipart/form-data">
+		<span style="color:red;">
+			<?php if(isset($_SESSION['success'])){
+				echo $_SESSION['success'];
+				unset($_SESSION['success']);
+			}else if(isset($_SESSION['error'])){
+				echo $_SESSION['error'];
+				unset($_SESSION['error']);			
+			}?>
+		</span>
 		<div class="container">
 			<div class="row">  	 	
 				<div class="col-md-6">
@@ -56,7 +65,7 @@
 						<input type="text" class="form-control" id="address" name="address" value="<?php echo $result->getAddress() ?>">
 					</div>
 					<div class="mb-3">
-					Old Photo
+						Old Photo
 						<img src="<?php echo '../controller/'.$result->getAvatar() ?>" height='100';>
 						<input type="hidden" name="avatar_old" value="<?php echo '../controller/'.$result->getAvatar() ?>">
 					</div>

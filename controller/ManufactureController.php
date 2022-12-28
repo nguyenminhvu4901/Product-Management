@@ -14,16 +14,19 @@ class ManufactureController{
 	}
 
 	public function store(){
+		session_start();
 		if(empty($_POST['manufacturer_name']) || empty($_POST['manufacturer_address']) || empty($_POST['manufacturer_phone'])) {
-			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+			header('Location: index.php');
 			exit;
 		}
 		require '../config/session.php';
 		require '../model/Manufacture.php';
 		$rs = (new Manufacture())->insert($_POST);
 		if($rs === true){
-			header('Location: index.php?controller=manufacture&action=index&success=Them thanh cong');
+			$_SESSION['manufacture_success'] = "Thêm Manufacture thành công";
+			header('Location: index.php?controller=manufacture&action=index');
 		}else{
+			$_SESSION['manufacture_error'] = "Thêm Manufacture không thành công";
 			header("Location: index.php?controller=manufacture&action=create&error=Vui long nhap lai");
 		}
 		
@@ -52,8 +55,10 @@ class ManufactureController{
 		require '../model/Manufacture.php';
 		$result = (new Manufacture())->update($_POST);
 		if($result === true){
+			$_SESSION['manufacture_success'] = "Thay đổi Manufacture thành công";
 			header('Location: index.php?controller=manufacture&action=index&success=Them thanh cong');
 		}else{
+			$_SESSION['manufacture_error'] = "Thay đổi Manufacture không thành công";
 			header("Location: index.php?controller=manufacture&action=update&error=Vui long nhap lai");
 		}
 	}
@@ -82,9 +87,13 @@ class ManufactureController{
 		$id_m = $_GET['id_m'];
 		require '../model/Manufacture.php';
 		$result = (new Manufacture())->delete($id_m);
-		if($result === true){
-			header('Location: index.php?controller=manufacture&action=index&success=Xoa thanh cong');
+		print_r($result);
+		if($result == false){
+			
+			header('Location: index.php?controller=manufacture&action=index');
 		}else{
+			
+			
 			header("Location: index.php?controller=manufacture&action=index&error=Xoa khong thanh cong");
 		}
 

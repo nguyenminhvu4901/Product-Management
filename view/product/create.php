@@ -11,13 +11,15 @@
 </head>
 <body>
 	<h1 style="text-align:center; color:red;">ADD PRODUCT</h1>
-	<?php
-	if(isset($_GET['loi'])){
-		?>
-		<span style = "color:red;"><?php echo $_GET['loi']?></span>
-		<?php 
-	}
-	?>
+	<span style="color:red;">
+		<?php if(isset($_SESSION['product_success'])){
+			echo $_SESSION['product_success'];
+			unset($_SESSION['product_success']);
+		}else if(isset($_SESSION['product_error'])){
+			echo $_SESSION['product_error'];
+			unset($_SESSION['product_error']);			
+		}?>
+	</span>
 
 	<form action="?controller=product&action=store" method="post" enctype="multipart/form-data">
 		<div class="container">

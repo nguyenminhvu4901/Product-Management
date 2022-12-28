@@ -35,8 +35,10 @@ class ProductController{
 		require '../model/Product.php';
 		$rs = (new Product())->insert($product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		if($rs === true){
+			$_SESSION['product_success'] = "Thêm Product thành công";
 			header('Location: index.php?controller=product&action=index&success=Them thanh cong');
 		}else{
+			$_SESSION['product_error'] = "Thêm Product không thành công";
 			header("Location: index.php?controller=product&action=create&error=Vui long nhap lai");
 		}
 
@@ -84,8 +86,10 @@ class ProductController{
 		require '../model/Product.php';
 		$result = (new Product())->update($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		if($result === true){
+			$_SESSION['product_success'] = "Thay đổi Product thành công";
 			header('Location: index.php?controller=product&action=index&success=Them thanh cong');
 		}else{
+			$_SESSION['product_error'] = "Thay đổi Product không thành công";
 			header("Location: index.php?controller=product&action=update&error=Vui long nhap lai");
 		}
 	}

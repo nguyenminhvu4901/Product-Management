@@ -11,57 +11,66 @@
 	<title>Document</title>
 </head>
 <body>
-	 <form action="?controller=product&action=process_update&id=<?php echo $result->getIdP() ?>" method="post" enctype="multipart/form-data">
-	 	<input type="hidden" name="id_p" value="<?php echo $result->getIdP() ?>">
+	<form action="?controller=product&action=process_update&id=<?php echo $result->getIdP() ?>" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id_p" value="<?php echo $result->getIdP() ?>">
 		<form action="?controller=product&action=store" method="post" enctype="multipart/form-data">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="mb-3">
-						<input type="hidden" id="id_p" name="id_p" value="<?php echo $result->getIdP() ?>">
-						<label for="product_name" class="form-label">Product name</label>
-						<input type="text" class="form-control" id="product_name" name="product_name" value="<?php echo $result->getProductName() ?>">
-					</div>
-					<div class="mb-3">
-						<label for="product_description" class="form-label">Description</label>
-						<input type="text" class="form-control" id="product_description" name="product_description" value="<?php echo $result->getProductDescription() ?>">
-					</div>
-					<div class="mb-3">
-						<label for="product_price" class="form-label">Price</label>
-						<input type="number" class="form-control" id="product_price" name="product_price" value="<?php echo $result->getProductPrice() ?>">
-					</div>
-				</div>
-
-				<div class="col-md-6">
-
-					<div class="mb-3">
-						<label for="product_date" class="form-label">Date</label>
-						<input type="date" class="form-control" id="product_date" name="product_date" value="<?php echo $result->getProductDate() ?>">
-					</div>
-					<div class="mb-3">
-					Old Photo
-						<img src="<?php echo $result->getProductPhoto() ?>" height='100';>
-						<input type="hidden" name="product_photo_old" value="<?php echo $result->getProductPhoto() ?>">
-					</div>
-					
-					<div class="mb-3">
-						<label for="product_photo" class="form-label">New Photo</label>
-						<input type="file" class="form-control" id="product_photo" name="product_photo">
-					</div>
-					<div class="mb-3">
-						<select name="id_manufacturer">
-							<?php foreach($names as $name): ?>
-								<option value="<?php echo $name->get_id_m() ?>" <?php if($result->getIdManufacturer() === $name->get_id_m()) echo "selected" ?>>
-									<?php echo $name->get_manufacturer_name() ?>
-								</option>
-							<?php endforeach; ?>
-						</select></div>
-						<button type="submit" class="btn btn-primary">Submit</button>
+			<span style="color:red;">
+				<?php if(isset($_SESSION['product_success'])){
+					echo $_SESSION['product_success'];
+					unset($_SESSION['product_success']);
+				}else if(isset($_SESSION['product_error'])){
+					echo $_SESSION['product_error'];
+					unset($_SESSION['product_error']);			
+				}?>
+			</span>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="mb-3">
+							<input type="hidden" id="id_p" name="id_p" value="<?php echo $result->getIdP() ?>">
+							<label for="product_name" class="form-label">Product name</label>
+							<input type="text" class="form-control" id="product_name" name="product_name" value="<?php echo $result->getProductName() ?>">
+						</div>
+						<div class="mb-3">
+							<label for="product_description" class="form-label">Description</label>
+							<input type="text" class="form-control" id="product_description" name="product_description" value="<?php echo $result->getProductDescription() ?>">
+						</div>
+						<div class="mb-3">
+							<label for="product_price" class="form-label">Price</label>
+							<input type="number" class="form-control" id="product_price" name="product_price" value="<?php echo $result->getProductPrice() ?>">
+						</div>
 					</div>
 
-					
-				</div>
-			</div
+					<div class="col-md-6">
+
+						<div class="mb-3">
+							<label for="product_date" class="form-label">Date</label>
+							<input type="date" class="form-control" id="product_date" name="product_date" value="<?php echo $result->getProductDate() ?>">
+						</div>
+						<div class="mb-3">
+							Old Photo
+							<img src="<?php echo $result->getProductPhoto() ?>" height='100';>
+							<input type="hidden" name="product_photo_old" value="<?php echo $result->getProductPhoto() ?>">
+						</div>
+						
+						<div class="mb-3">
+							<label for="product_photo" class="form-label">New Photo</label>
+							<input type="file" class="form-control" id="product_photo" name="product_photo">
+						</div>
+						<div class="mb-3">
+							<select name="id_manufacturer">
+								<?php foreach($names as $name): ?>
+									<option value="<?php echo $name->get_id_m() ?>" <?php if($result->getIdManufacturer() === $name->get_id_m()) echo "selected" ?>>
+										<?php echo $name->get_manufacturer_name() ?>
+									</option>
+								<?php endforeach; ?>
+							</select></div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+
+						
+					</div>
+					</div
 
 
 
@@ -74,6 +83,6 @@
 
 
 
-</form>
-</body>
-</html>
+				</form>
+			</body>
+			</html>

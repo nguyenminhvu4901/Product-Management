@@ -13,6 +13,15 @@
 	
 	<form action="?controller=user&action=process_change" method="post" enctype="multipart/form-data">
 		<input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id ?>">
+		<span style="color:red;">
+			<?php if(isset($_SESSION['success'])){
+				echo $_SESSION['success'];
+				unset($_SESSION['success']);
+			}else if(isset($_SESSION['error'])){
+				echo $_SESSION['error'];
+				unset($_SESSION['error']);			
+			}?>
+		</span>
 		<div class="container">
 			<div class="mb-3">
 				<label for="old_pass" class="form-label">Enter old pasword</label>

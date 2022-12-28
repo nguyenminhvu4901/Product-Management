@@ -8,6 +8,7 @@ class UserController{
 	}
 
 	public function login(){
+		session_start();
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$pass1 = $password;
@@ -37,9 +38,11 @@ class UserController{
 				setcookie("user", $each['username'], time() + (86400 * 30)); 
 				setcookie("pass", $pass1, time() + (86400 * 30)); 
 			}
+			$_SESSION['success_login'] = "Đăng nhập thành công";
 			header('location: index.php');
 			exit;
 		}
+		$_SESSION['error_login'] = "Đăng nhập không thành công";
 		header('location: ../view/user/form_login.php');
 		exit;
 	}
@@ -49,6 +52,7 @@ class UserController{
 			header('Location: index.php?loi=Bạn cần nhập id để xóa');
 			exit;
 		}
+		session_start();
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$name= $_POST['name'];
@@ -66,8 +70,10 @@ class UserController{
 		require '../model/User.php';
 		$rs = (new User())->insert($username, $password, $name, $birth, $gender, $address, $target_file, $email);
 		if($rs === true){
+			$_SESSION['success_register'] = "Đăng ký thành công";
 			header('Location: index.php');
 		}else{
+			$_SESSION['error_register'] = "Đăng ký không thành công";
 			header("Location: ../view/user/form_register.php");
 		}
 	}
@@ -115,9 +121,9 @@ class UserController{
 		if($result === true){
 
 			$_SESSION['success'] = "Thay đổi thành công";
-
 			header('Location: index.php?controller=base');
 		}else{
+			$_SESSION['error'] = "Thay đổi không thành công";
 			header("Location: index.php?controller=user&action=update");
 		}
 	}
@@ -147,6 +153,7 @@ class UserController{
 	}
 
 	public function process_change(){
+
 		if(empty($_POST['id'])){
 			header('Location: index.php?loi=Bạn cần nhập id để xóa');
 			exit;
@@ -164,14 +171,18 @@ class UserController{
 			if($new_pass === $re_new_pass){
 				$result = (new User())->process_change($id, $new_pass);
 				if($result == true){
+					$_SESSION['success'] = "Thay đổi mật khẩu thành công";
 					header("Location: index.php?controller=base ");
 				}else{
+					$_SESSION['error'] = "Thay đổi mật khẩu không thành công";
 					header("Location: index.php?controller=user&action=change");
 				}
 			}else{
+				$_SESSION['error'] = "Thay đổi mật khẩu không thành công";
 				header("Location: index.php?controller=user&action=change");
 			}
 		}else{
+			$_SESSION['error'] = "Thay đổi mật khẩu không thành công";
 			header("Location: index.php?controller=user&action=change");
 		}
 		

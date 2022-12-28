@@ -12,34 +12,43 @@
 </head>
 <body>
 	<form action="?controller=manufacture&action=process_update" method="post" enctype="multipart/form-data">
+		<span style="color:red;">
+			<?php if(isset($_SESSION['manufacture_success'])){
+				echo $_SESSION['manufacture_success'];
+				unset($_SESSION['manufacture_success']);
+			}else if(isset($_SESSION['manufacture_error'])){
+				echo $_SESSION['manufacture_error'];
+				unset($_SESSION['manufacture_error']);			
+			}?>
+		</span>
 		<div class="container">
-					<?php
-					if(isset($_GET['loi'])){
-						?>
-						<span style = "color:red;"><?php echo $_GET['loi']?></span>
-						<?php 
-					}
-					?>
-					<div class="mb-3">
-						<input type="hidden" class="form-control" id="manufacturer_name" name="id_m" value="<?php echo $result->get_id_m() ?>">
-					</div>
-					<div class="mb-3">
-						<label for="manufacturer_name" class="form-label">Name</label>
-						<input type="text" class="form-control" id="manufacturer_name" name="manufacturer_name" value="<?php echo $result->get_manufacturer_name() ?>">
-					</div>
-					<div class="mb-3">
-						<label for="manufacturer_address" class="form-label">Address</label>
-						<input type="text" class="form-control" id="manufacturer_address" name="manufacturer_address" value="<?php echo $result->get_manufacturer_address() ?>">
-					</div>
-					<div class="mb-3">
-						<label for="manufacturer_phone" class="form-label">Phone</label>
-						<input type="number" class="form-control" id="manufacturer_phone" name="manufacturer_phone" value="<?php echo $result->get_manufacturer_phone() ?>">
-					</div>
+			<?php
+			if(isset($_GET['loi'])){
+				?>
+				<span style = "color:red;"><?php echo $_GET['loi']?></span>
+				<?php 
+			}
+			?>
+			<div class="mb-3">
+				<input type="hidden" class="form-control" id="manufacturer_name" name="id_m" value="<?php echo $result->get_id_m() ?>">
+			</div>
+			<div class="mb-3">
+				<label for="manufacturer_name" class="form-label">Name</label>
+				<input type="text" class="form-control" id="manufacturer_name" name="manufacturer_name" value="<?php echo $result->get_manufacturer_name() ?>">
+			</div>
+			<div class="mb-3">
+				<label for="manufacturer_address" class="form-label">Address</label>
+				<input type="text" class="form-control" id="manufacturer_address" name="manufacturer_address" value="<?php echo $result->get_manufacturer_address() ?>">
+			</div>
+			<div class="mb-3">
+				<label for="manufacturer_phone" class="form-label">Phone</label>
+				<input type="number" class="form-control" id="manufacturer_phone" name="manufacturer_phone" value="<?php echo $result->get_manufacturer_phone() ?>">
+			</div>
 
-				
+			
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</div>
 
-</form>
+	</form>
 </body>
 </html>
