@@ -23,8 +23,14 @@ if(empty($_SESSION['id'])){
 </style>
 <body>
 	<h1 style="text-align: center;">MENU</h1>
+	<span style="color:red;"><?php if(isset($_SESSION['success'])){
+		echo $_SESSION['success'];
+		unset($_SESSION['success']);
+	}?></span>
+	<br>
 	<ul>
 		<li>
+			
 			<?php
 			echo 'Tên tôi là'.' '.$_SESSION['name'];
 			echo '<br>';

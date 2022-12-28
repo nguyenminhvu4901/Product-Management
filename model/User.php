@@ -26,6 +26,8 @@ class User{
 			exit;
 		}
 		return $rs;
+		//Bam mat khau php
+		//password_hash(string, PASSWORD_DEFAULT)
 
 	}
 

@@ -1,125 +1,105 @@
-<?php 
-if(isset($_COOKIE['remember'])){
-	$token = $_COOKIE['remember'];
-	$connect = mysqli_connect('localhost','root','','Product_Manager');
-	mysqli_set_charset($connect, 'utf8');
-	$sql = "select * from User where token = '$token' limit 1 ";
-	$result = mysqli_query($connect, $sql);
-	$num_row = mysqli_num_rows($result);
-	if($num_row == 1){
-		$each = mysqli_fetch_array($result);
-		$_SESSION['id'] = $each['id'];
-		$_SESSION['name'] = $each['name'];
-	}
-	
-}
+
+
+
+
+
+
+<?php
 session_start();
-if(isset($_SESSION['id'])){
-	header('location: ../index.php');
-	exit;
-}
-
 ?>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Fonts -->
-	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-
-	<link rel="stylesheet" href="css/style.css">
-
-	<link rel="icon" href="Favicon.png">
-
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<!-- JavaScript Bundle with Popper -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	<title>Login</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
-<body>
-	<form action="../index.php?controller=user&action=login" method="post" accept-charset="utf-8">
-		<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-			<div class="container">
-				<a class="navbar-brand" href="../../index.php">Zũ</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="form_register.php">Register</a>
-						</li>
-					</ul>
-
+<body id="LoginForm">
+	<div class="container">
+		<h1 class="form-heading">PHP Mysql Login using Cookie and Session</h1>
+		<div class="login-form">
+			<div class="main-div">
+				<div class="panel">
+					<h2>Login</h2>
 				</div>
-			</div>
-		</nav>
-
-		<main class="login-form">
-			<div class="cotainer">
-				<div class="row justify-content-center">
-					<div class="col-md-8">
-						<div class="card">
-							<div class="card-header">Product</div>
-							<div class="card-body">
-								<form action="" method="">
-									<div class="form-group row">
-										<label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
-										<div class="col-md-6">
-											<input type="text" id="username" class="form-control" name="username" >
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-										<div class="col-md-6">
-											<input type="password" id="password" class="form-control" name="password">
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<div class="col-md-6 offset-md-4">
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" name="remember"> Remember Me
-												</label>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-md-6 offset-md-4">
-										<button type="submit" class="btn btn-primary">
-											<a href="#" style = "color:white; text-decoration: none;">Login</a>
-										</button>
-
-										
-									</div>
-								</div>
-							</form>
-						</div>
+				<form action="../index.php?controller=user&action=login" method="POST" accept-charset="utf-8">
+					<div class="form-group">
+						<input type="text" value="<?php if (isset($_COOKIE["user"])){echo $_COOKIE["user"];}?>" name="username" class="form-control" id="inputEmail" placeholder="Username">
 					</div>
-				</div>
-			</div>
+					<div class="form-group">
+						<input type="password" value="<?php if (isset($_COOKIE["pass"])){echo $_COOKIE["pass"];}?>" name="password" class="form-control" id="inputPassword" placeholder="Password">
+					</div>
+					<div class="form-group" style="text-align:left;">
+						<label><input type="checkbox" name="remember" <?php if (isset($_COOKIE["user"]) && isset($_COOKIE["pass"])){ echo "checked";}?>> Remember me </label>
+					</div>
+					<div>
+						<a href="form_register.php">Register</a>
+					</div>
+					<input type="submit" class="btn btn-primary" value="Login" name="login">
+					<span>    <?php
+					if (isset($_SESSION['message'])){
+						echo $_SESSION['message'];
+					}
+					unset($_SESSION['message']);
+				?></span>
+			</form>
 		</div>
-		<a  href="form_register.php" style = "color:white; text-decoration: none;">Register</a>
+		<p class="botto-text"> by Zu dep zai</p>
+	</div>
+</div>
+<style>
+	body#LoginForm{ background-image:url("img/bgblur.jpg"); background-repeat:no-repeat; background-position:center; background-size:cover; padding:10px;}
 
-	</main>
+	.form-heading { color:#fff; font-size:23px;text-align:center;}
+	.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
+	.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+	.login-form .form-control {
+		background: #f7f7f7 none repeat scroll 0 0;
+		border: 1px solid #d4d4d4;
+		border-radius: 4px;
+		font-size: 14px;
+		height: 50px;
+		line-height: 50px;
+	}
+	.main-div {
+		background: #ffffff none repeat scroll 0 0;
+		border-radius: 2px;
+		margin: 10px auto 30px;
+		max-width: 38%;
+		padding: 50px 70px 70px 71px;
+	}
 
-
-
-</form>
-
-
-
+	.login-form .form-group {
+		margin-bottom:10px;
+	}
+	.login-form{ text-align:center;}
+	.forgot a {
+		color: #777777;
+		font-size: 14px;
+		text-decoration: underline;
+	}
+	.login-form  .btn.btn-primary {
+		background: #f0ad4e none repeat scroll 0 0;
+		border-color: #f0ad4e;
+		color: #ffffff;
+		font-size: 14px;
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		padding: 0;
+	}
+	.forgot {
+		text-align: left; margin-bottom:30px;
+	}
+	.botto-text {
+		color: #ffffff;
+		font-size: 14px;
+		margin: auto;
+	}
+	.login-form .btn.btn-primary.reset {
+		background: #ff9900 none repeat scroll 0 0;
+	}
+	.back { text-align: left; margin-top:10px;}
+	.back a {color: #444444; font-size: 13px;text-decoration: none;}
+</style>
 </body>
 </html>

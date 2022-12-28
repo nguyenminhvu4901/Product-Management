@@ -9,7 +9,7 @@ class UserObject{
 	private $address;
 	private $avatar;
 	private $email;
-    private $token;
+    public $token;
 
 	public function __construct($row){
 		$this->id = $row['id'] ?? '';

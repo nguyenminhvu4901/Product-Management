@@ -10,12 +10,9 @@ class UserController{
 	public function login(){
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		$pass1 = $password;
+		$remember = $_POST['remember'];
 		$password = sha1($password);
-		if(isset($_POST['remember'])){
-			$remember = true;
-		}else{
-			$remember = false;
-		}
 		$connect = mysqli_connect('localhost','root','','Product_Manager');
 		mysqli_set_charset($connect, 'utf8');
 
@@ -31,12 +28,14 @@ class UserController{
 			$id = $each['id'];
 			$_SESSION['id'] = $id;
 			$_SESSION['name'] = $each['name'];
-			if($remember){
-				$token = uniqid('gia_tri_gi_do', true) + time();
+			if(isset($_POST['remember'])){
+				$token = uniqid('user_', true);
 				$sql = "update User
 				set token = '$token' 
 				where id = '$id' ";
 				setcookie('remember', $token, time()+ 60 *60 * 24);
+				setcookie("user", $each['username'], time() + (86400 * 30)); 
+				setcookie("pass", $pass1, time() + (86400 * 30)); 
 			}
 			header('location: index.php');
 			exit;
@@ -86,6 +85,7 @@ class UserController{
 	}
 
 	public function process_update(){
+		session_start();
 		if(empty($_POST['id'])){
 			header('Location: index.php?loi=Bạn cần nhập id để xóa');
 			exit;
@@ -113,6 +113,9 @@ class UserController{
 		require '../model/User.php';
 		$result = (new User())->update($id, $name, $birth, $gender, $address, $target_file, $email);
 		if($result === true){
+
+			$_SESSION['success'] = "Thay đổi thành công";
+
 			header('Location: index.php?controller=base');
 		}else{
 			header("Location: index.php?controller=user&action=update");
@@ -178,7 +181,8 @@ class UserController{
 		require '../config/session.php';
 		unset($_SESSION['id']);
 		setcookie('remember', null, -1);
-
+		setcookie('user', null, -1);
+		setcookie('pass', null, -1);
 		header('location: ../index.php');
 	}
 }
