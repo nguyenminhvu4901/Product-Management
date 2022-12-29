@@ -24,12 +24,12 @@ if(empty($_SESSION['id'])){
 <body>
 	<h1 style="text-align: center;">MENU</h1>
 	<span style="color:red;">
-		<?php if(isset($_SESSION['success'])){
-			echo $_SESSION['success'];
-			unset($_SESSION['success']);
-		}else if(isset($_SESSION['error'])){
-			echo $_SESSION['error'];
-			unset($_SESSION['error']);			
+		<?php if(isset($_SESSION['success_update'])){
+			echo $_SESSION['success_update'];
+			unset($_SESSION['success_update']);
+		}else if(isset($_SESSION['error_update'])){
+			echo $_SESSION['error_update'];
+			unset($_SESSION['error_update']);			
 		}else if(isset($_SESSION['success_login'])){
 			echo $_SESSION['success_login'];
 			unset($_SESSION['success_login']);
@@ -42,6 +42,18 @@ if(empty($_SESSION['id'])){
 		}else if(isset($_SESSION['error_register'])){
 			echo $_SESSION['error_register'];
 			unset($_SESSION['error_register']);			
+		}else if(isset($_SESSION['manufacture_error'])){
+			echo $_SESSION['manufacture_error'];
+			unset($_SESSION['manufacture_error']);			
+		}else if(isset($_SESSION['product_error'])){
+			echo $_SESSION['product_error'];
+			unset($_SESSION['product_error']);			
+		}else if(isset($_SESSION['error_change'])){
+			echo $_SESSION['error_update'];
+			unset($_SESSION['error_update']);			
+		}else if(isset($_SESSION['success_change'])){
+			echo $_SESSION['success_login'];
+			unset($_SESSION['success_login']);
 		}
 		?>
 	</span>

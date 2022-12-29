@@ -9,27 +9,22 @@
 	<title>Document</title>
 </head>
 <body>
-	<?php 
-	$error = $_GET['error'] ?? '';
-
-	$success = $_GET['success'] ?? '';
-	?>
-	<span style="color: green;"><?php
-	echo $success;
-?></span>
-<span style="color: red;"><?php
-echo $error;
-?></span>
-
-
 <a href="?controller=product&action=create" title="">Add Product</a>
 <span style="color:red;">
-	<?php if(isset($_SESSION['product_success'])){
-		echo $_SESSION['product_success'];
-		unset($_SESSION['product_success']);
-	}else if(isset($_SESSION['product_error'])){
-		echo $_SESSION['product_error'];
-		unset($_SESSION['product_error']);			
+	<?php if(isset($_SESSION['product_success_store'])){
+		echo $_SESSION['product_success_store'];
+		unset($_SESSION['product_success_store']);
+	}else if(isset($_SESSION['product_error_store'])){
+		echo $_SESSION['product_error_store'];
+		unset($_SESSION['product_error_store']);			
+	}
+	else if(isset($_SESSION['product_success_update'])){
+		echo $_SESSION['product_success_update'];
+		unset($_SESSION['product_success_update']);			
+	}
+	else if(isset($_SESSION['product_error_update'])){
+		echo $_SESSION['product_error_update'];
+		unset($_SESSION['product_error_update']);			
 	}?>
 </span>
 <table border="1" class="table table-danger">

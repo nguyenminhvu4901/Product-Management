@@ -1,5 +1,7 @@
 <?php
-class ManufactureController{
+
+require_once ('BaseController.php');
+class ManufactureController implements BaseController{
 
 	public function index(){
 		require '../config/session.php';
@@ -23,10 +25,10 @@ class ManufactureController{
 		require '../model/Manufacture.php';
 		$rs = (new Manufacture())->insert($_POST);
 		if($rs === true){
-			$_SESSION['manufacture_success'] = "Thêm Manufacture thành công";
+			$_SESSION['manufacture_success_store'] = "Thêm Manufacture thành công";
 			header('Location: index.php?controller=manufacture&action=index');
 		}else{
-			$_SESSION['manufacture_error'] = "Thêm Manufacture không thành công";
+			$_SESSION['manufacture_error_store'] = "Thêm Manufacture không thành công";
 			header("Location: index.php?controller=manufacture&action=create&error=Vui long nhap lai");
 		}
 		
@@ -48,6 +50,7 @@ class ManufactureController{
 	public function process_update(){
 		$id_m = $_GET['id_m'];
 		if(empty($_POST['id_m']) || empty($_POST['manufacturer_name']) || empty($_POST['manufacturer_address']) || empty($_POST['manufacturer_phone'])) {
+			$_SESSION['manufacture_error_update'] = "Thay đổi Manufacture không thành công";
 			header('Location: index.php?loi=Bạn cần nhập id để sửa');
 			exit;
 		}
@@ -55,10 +58,10 @@ class ManufactureController{
 		require '../model/Manufacture.php';
 		$result = (new Manufacture())->update($_POST);
 		if($result === true){
-			$_SESSION['manufacture_success'] = "Thay đổi Manufacture thành công";
+			$_SESSION['manufacture_success_update'] = "Thay đổi Manufacture thành công";
 			header('Location: index.php?controller=manufacture&action=index&success=Them thanh cong');
 		}else{
-			$_SESSION['manufacture_error'] = "Thay đổi Manufacture không thành công";
+			$_SESSION['manufacture_error_update'] = "Thay đổi Manufacture không thành công";
 			header("Location: index.php?controller=manufacture&action=update&error=Vui long nhap lai");
 		}
 	}

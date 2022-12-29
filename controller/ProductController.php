@@ -1,5 +1,6 @@
 <?php
-class ProductController{
+require_once ('BaseController.php');
+class ProductController implements BaseController{
 	public function index(){
 		require '../config/session.php';
 		require '../model/Product.php';
@@ -15,8 +16,9 @@ class ProductController{
 	}
 
 	public function store(){
-		if(empty($_POST['product_name'])) {
-			header('Location: index.php?loi=Bạn cần nhập id để sửa');
+		if(empty($_POST['product_name']) || empty($_POST['product_description']) || empty($_POST['product_price']) || empty($_POST['product_date'])) {
+			$_SESSION['product_error_store'] = "Thêm Product không thành công";
+			header('Location: index.php');
 			exit;
 		}
 		require '../config/session.php';
@@ -35,10 +37,10 @@ class ProductController{
 		require '../model/Product.php';
 		$rs = (new Product())->insert($product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		if($rs === true){
-			$_SESSION['product_success'] = "Thêm Product thành công";
+			$_SESSION['product_success_store'] = "Thêm Product thành công";
 			header('Location: index.php?controller=product&action=index&success=Them thanh cong');
 		}else{
-			$_SESSION['product_error'] = "Thêm Product không thành công";
+			$_SESSION['product_error_store'] = "Thêm Product không thành công";
 			header("Location: index.php?controller=product&action=create&error=Vui long nhap lai");
 		}
 
@@ -60,7 +62,7 @@ class ProductController{
 	}
 
 	public function process_update(){
-		if(empty($_POST['id_p'])) {
+		if(empty($_POST['id_p']) || empty($_POST['product_name']) || empty($_POST['product_price'])) {
 			header('Location: index.php?loi=Bạn cần nhập id để sửa');
 			exit;
 		}
@@ -86,10 +88,10 @@ class ProductController{
 		require '../model/Product.php';
 		$result = (new Product())->update($id_p, $product_name, $product_description, $product_price, $product_date, $target_file, $id_manufacturer);
 		if($result === true){
-			$_SESSION['product_success'] = "Thay đổi Product thành công";
+			$_SESSION['product_success_update'] = "Thay đổi Product thành công";
 			header('Location: index.php?controller=product&action=index&success=Them thanh cong');
 		}else{
-			$_SESSION['product_error'] = "Thay đổi Product không thành công";
+			$_SESSION['product_error_update'] = "Thay đổi Product không thành công";
 			header("Location: index.php?controller=product&action=update&error=Vui long nhap lai");
 		}
 	}

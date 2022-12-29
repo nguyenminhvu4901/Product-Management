@@ -120,10 +120,10 @@ class UserController{
 		$result = (new User())->update($id, $name, $birth, $gender, $address, $target_file, $email);
 		if($result === true){
 
-			$_SESSION['success'] = "Thay đổi thành công";
+			$_SESSION['success_update'] = "Thay đổi thành công";
 			header('Location: index.php?controller=base');
 		}else{
-			$_SESSION['error'] = "Thay đổi không thành công";
+			$_SESSION['error_update'] = "Thay đổi không thành công";
 			header("Location: index.php?controller=user&action=update");
 		}
 	}
@@ -171,18 +171,18 @@ class UserController{
 			if($new_pass === $re_new_pass){
 				$result = (new User())->process_change($id, $new_pass);
 				if($result == true){
-					$_SESSION['success'] = "Thay đổi mật khẩu thành công";
+					$_SESSION['success_change'] = "Thay đổi mật khẩu thành công";
 					header("Location: index.php?controller=base ");
 				}else{
-					$_SESSION['error'] = "Thay đổi mật khẩu không thành công";
+					$_SESSION['error_change'] = "Thay đổi mật khẩu không thành công";
 					header("Location: index.php?controller=user&action=change");
 				}
 			}else{
-				$_SESSION['error'] = "Thay đổi mật khẩu không thành công";
+				$_SESSION['error_change'] = "Thay đổi mật khẩu không thành công";
 				header("Location: index.php?controller=user&action=change");
 			}
 		}else{
-			$_SESSION['error'] = "Thay đổi mật khẩu không thành công";
+			$_SESSION['error_change'] = "Thay đổi mật khẩu không thành công";
 			header("Location: index.php?controller=user&action=change");
 		}
 		

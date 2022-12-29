@@ -17,6 +17,18 @@
 		}else if(isset($_SESSION['manufacture_error'])){
 			echo $_SESSION['manufacture_error'];
 			unset($_SESSION['manufacture_error']);			
+		}else if(isset($_SESSION['manufacture_success_store'])){
+			echo $_SESSION['manufacture_success_store'];
+			unset($_SESSION['manufacture_success_store']);			
+		}else if(isset($_SESSION['manufacture_error_store'])){
+			echo $_SESSION['manufacture_error_store'];
+			unset($_SESSION['manufacture_error_store']);			
+		}else if(isset($_SESSION['manufacture_success_update'])){
+			echo $_SESSION['manufacture_success_update'];
+			unset($_SESSION['manufacture_success_update']);			
+		}else if(isset($_SESSION['manufacture_error_update'])){
+			echo $_SESSION['manufacture_error_update'];
+			unset($_SESSION['manufacture_error_update']);			
 		}?>
 	</span>
 	<table border="1" class="table table-danger">
